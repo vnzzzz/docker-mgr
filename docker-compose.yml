@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  traefik:
+    container_name: traefik
+    hostname: traefik
+    restart: always
+    build:
+      context: ./traefik
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik_data/traefik.yml:/etc/traefik/traefik.yml
+    networks:
+      - web
+    labels:
+      - traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)
+      - traefik.http.routers.http-catchall.entrypoints=web
+
+  portainer:
+    container_name: portainer
+    hostname: portainer
+    restart: always
+    build:
+      context: ./portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer/portainer_data:/data
+    networks:
+      - web
+    labels:
+      - traefik.enable=true
+      # Frontend
+      - traefik.http.routers.frontend.rule=Host(`portainer.localhost`)
+      - traefik.http.routers.frontend.entrypoints=web
+      - traefik.http.services.frontend.loadbalancer.server.port=9000
+      - traefik.http.routers.frontend.service=frontend
+
+      # Edge
+      - traefik.http.routers.edge.rule=Host(`edge.localhost`)
+      - traefik.http.routers.edge.entrypoints=web
+      - traefik.http.services.edge.loadbalancer.server.port=8000
+      - traefik.http.routers.edge.service=edge
+
+networks:
+  web:
+    driver: bridge
