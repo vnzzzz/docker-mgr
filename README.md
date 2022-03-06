@@ -67,9 +67,7 @@
    docker-compose -f sample/docker-compose.yml up -d
    ```
 
-   :::note
-   それぞれのコンテナでの traefik の設定は、`sample/docker-compose.yml`を確認すること
-   :::
+   :information: それぞれのコンテナでの traefik の設定は、`sample/docker-compose.yml`を確認すること
 
    ブラウザでのアクセス確認
    nginx コンテナが２つ立上がるので、それぞれブラウザに下記を入力してアクセスを確認する
