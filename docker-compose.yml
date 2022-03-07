@@ -33,6 +33,7 @@ services:
       - web
     labels:
       - traefik.enable=true
+
       # Frontend
       - traefik.http.routers.frontend.rule=Host(`portainer.localhost`)
       - traefik.http.routers.frontend.entrypoints=web
