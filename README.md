@@ -96,3 +96,9 @@
    portainer の反映を確認する
 
     ![picture 7](images/portainer-sample.png)  
+
+## 確認
+起動しているコンテナの情報は下記で確認できる。
+```bash
+docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
