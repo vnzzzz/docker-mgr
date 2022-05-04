@@ -16,22 +16,27 @@
 - 構成
 
   ```bash
+  # docker-mgr：portainer+traefik
   .
   ├── README.md
   ├── docker-compose.yml
   ├── portainer # portainerの設定等
   │   ├── Dockerfile
   │   └── portainer_data # ローカルマウント用
-  ├── sample # traefikによるルーティングのサンプルPJ
-  │   ├── docker-compose.yml
-  │   ├── web1
-  │   │   └── index.html
-  │   └── web2
-  │       └── index.html
   └── traefik # traefikの設定等
       ├── Dockerfile
       └── traefik_data
           └── traefik.yml
+  ```
+
+  ```bash
+  # docker-mgr-pj：traefikによってルーティングされる各種web PJ
+  .
+  ├── docker-compose.yml
+  ├── web1
+  │   └── index.html
+  └── web2
+      └── index.html
   ```
 
 ## 手順
