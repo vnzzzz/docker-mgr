@@ -9,7 +9,8 @@
 概説
 
 - traefik と portainer は 1 つ docker-compose.yml で準備する
-- 今後作成する docker プロジェクトは、それぞれ別のプロジェクトディレクトリの中で docker-compose.yml を作成し、その際に label で traefik の管理情報を付記する（sample ディレクトリ参照）
+- 今後作成する docker プロジェクトは、それぞれ別のプロジェクトディレクトリの中で docker-compose.yml を作成し、その際に label で traefik の管理情報を付記する
+  - [こちら](https://github.com/vnzzzz/docker-mgr-pj)を参照
 
 構成
 
